@@ -1,0 +1,23 @@
+{
+  "name": "stackexchange",
+  "version": "0.0.1",
+  "description": "Node.js implementation of the stackexchange/stackoverflow API",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Moveo/stackexchange.git"
+  },
+  "keywords": [
+    "stackoverflow",
+    "stackexchange",
+    "api",
+    "questions",
+    "answers"
+  ],
+  "author": "Martijn Swaagman",
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}
