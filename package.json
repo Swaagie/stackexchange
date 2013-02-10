@@ -10,6 +10,9 @@
     "type": "git",
     "url": "git@github.com:Moveo/stackexchange.git"
   },
+  "dependencies": {
+    "utile": "0.1.7"
+  },
   "keywords": [
     "stackoverflow",
     "stackexchange",
