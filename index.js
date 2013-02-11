@@ -1,1 +1,1 @@
-require('./lib/stackexchange');
+module.exports = require('./lib/stackexchange');

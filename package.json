@@ -11,6 +11,9 @@
     "url": "git@github.com:Moveo/stackexchange.git"
   },
   "dependencies": {
+    "nconf": "0.6.7",
+    "request": "2.12.0",
+    "devnull": "0.0.10",
     "utile": "0.1.7"
   },
   "keywords": [
