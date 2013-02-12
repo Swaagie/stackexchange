@@ -1,8 +1,8 @@
 {
   "name": "stackexchange",
-  "version": "0.0.3",
+  "version": "0.0.7",
   "description": "Node.js implementation of the stackexchange/stackoverflow API",
-  "main": "./lib/stackoverflow.js",
+  "main": "./lib/stackexchange",
   "scripts": {
     "test": "make test"
   },
