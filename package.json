@@ -4,7 +4,7 @@
   "description": "Node.js implementation of the stackexchange/stackoverflow API",
   "main": "./lib/stackexchange",
   "scripts": {
-    "test": "make test"
+    "test": "vows test/*-test.js test/**/*-test.js --spec"
   },
   "repository": {
     "type": "git",
@@ -15,6 +15,9 @@
     "request": "2.12.0",
     "devnull": "0.0.10",
     "utile": "0.1.7"
+  },
+  "devDependencies": {
+    "vows": "0.7.x"
   },
   "keywords": [
     "stackoverflow",
