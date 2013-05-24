@@ -1,41 +1,29 @@
-'use strict';
+/*global expect*/
+var config = require('../lib/config');
 
-var vows = require('vows')
-  , assert = require('assert')
-  , config = require('../lib/config');
+describe('Config', function () {
+  'use strict';
 
-vows.describe('Config').addBatch({
-    'has key api': {
-        topic: function () { return config.get('api'); }
-      , 'which equal api.stackexchange.com': function (topic) {
-          assert.equal(topic, 'api.stackexchange.com');
-        }
-    }
-  , 'has key site': {
-        topic: function () { return config.get('site'); }
-      , 'which equals stackoverflow': function (topic) {
-          assert.equal(topic, 'stackoverflow');
-        }
-    }
-  , 'has key version': {
-        topic: function () { return config.get('version'); }
-      , 'which equals 2.1': function (topic) {
-          assert.equal(topic, 2.1);
-        }
-      , 'and is type number': function (topic) {
-          assert.equal(typeof topic, 'number');
-        }
-    }
-  , 'has key protocol': {
-        topic: function () { return config.get('protocol'); }
-      , 'which equals http:': function (topic) {
-          assert.equal(topic, 'http:');
-        }
-    }
-  , 'uses storage': {
-        topic: function () { return config.stores; }
-      , 'memory': function (topic) {
-          assert('memory' in topic);
-        }
-    }
-}).export(module);
+  it('has API key', function() {
+    expect(config.get('api')).to.equal('api.stackexchange.com');
+  });
+
+  it('has API endpoint', function () {
+    expect(config.get('site')).to.equal('stackoverflow');
+  });
+
+  it('has API version', function () {
+    var version = config.get('version');
+
+    expect(version).to.equal(2.1);
+    expect(version).to.be.a('Number');
+  });
+
+  it('has default protocol', function () {
+    expect(config.get('protocol')).to.equal('http:');
+  });
+
+  it('uses memory storage', function () {
+    expect(config.stores).to.have.property('memory');
+  });
+});
