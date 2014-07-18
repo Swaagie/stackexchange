@@ -15,7 +15,7 @@ describe('Config', function () {
   it('has API version', function () {
     var version = config.get('version');
 
-    expect(version).to.equal(2.1);
+    expect(version).to.equal(2.2);
     expect(version).to.be.a('Number');
   });
 
