@@ -20,7 +20,7 @@ describe('Config', function () {
   });
 
   it('has default protocol', function () {
-    expect(config.get('protocol')).to.equal('http:');
+    expect(config.get('protocol')).to.equal('https:');
   });
 
   it('uses memory storage', function () {
