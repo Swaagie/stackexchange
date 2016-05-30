@@ -1,6 +1,6 @@
 {
   "name": "stackexchange",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Node.js implementation of the stackexchange/stackoverflow API",
   "main": "./lib/stackexchange",
   "scripts": {
@@ -11,17 +11,17 @@
     "url": "git@github.com:Moveo/stackexchange.git"
   },
   "dependencies": {
-    "nconf": "0.6.x",
-    "request": "2.21.x",
+    "nconf": "0.8.x",
+    "request": "2.72.x",
     "devnull": "0.0.x",
-    "utile": "0.2.x"
+    "utile": "0.3.x"
   },
   "devDependencies": {
-    "mocha": "1.10.x",
-    "chai": "1.6.x",
-    "sinon": "1.7.x",
-    "sinon-chai": "2.4.x",
-    "pre-commit": "0.0.x"
+    "mocha": "2.5.x",
+    "chai": "3.5.x",
+    "sinon": "1.17.x",
+    "sinon-chai": "2.8.x",
+    "pre-commit": "1.1.x"
   },
   "keywords": [
     "stackoverflow",
