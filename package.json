@@ -11,9 +11,9 @@
     "url": "git@github.com:Moveo/stackexchange.git"
   },
   "dependencies": {
+    "devnull": "git+https://github.com/observing/devnull.git#ff99281602feca0cf3bdf0e6d36fedbf1b566523",
     "nconf": "0.8.x",
     "request": "2.72.x",
-    "devnull": "0.0.x",
     "utile": "0.3.x"
   },
   "devDependencies": {
