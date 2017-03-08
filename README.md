@@ -1,5 +1,7 @@
 # Stackexchange API for Node.js
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Swaagie/stackexchange.svg)](https://greenkeeper.io/)
+
 Implementation of all stackexchange methods to query questions and awesome
 answers.
 
