@@ -12,15 +12,15 @@
   },
   "dependencies": {
     "nconf": "0.8.x",
-    "request": "2.72.x",
+    "request": "^2.87.0",
     "utile": "0.3.x"
   },
   "devDependencies": {
-    "mocha": "2.5.x",
     "chai": "3.5.x",
+    "mocha": "^5.2.0",
+    "pre-commit": "1.1.x",
     "sinon": "1.17.x",
-    "sinon-chai": "2.8.x",
-    "pre-commit": "1.1.x"
+    "sinon-chai": "2.8.x"
   },
   "keywords": [
     "stackoverflow",
