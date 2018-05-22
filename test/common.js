@@ -4,4 +4,4 @@ global.sinonChai = require('sinon-chai');
 global.expect = global.chai.expect;
 
 global.chai.use(global.sinonChai);
-global.chai.Assertion.includeStack = true;
+global.chai.config.includeStack = true;
