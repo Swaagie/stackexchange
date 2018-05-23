@@ -16,11 +16,11 @@
     "utile": "0.3.x"
   },
   "devDependencies": {
-    "chai": "3.5.x",
+    "chai": "^4.1.2",
     "mocha": "^5.2.0",
     "pre-commit": "1.1.x",
-    "sinon": "1.17.x",
-    "sinon-chai": "2.8.x"
+    "sinon": "^4.5.0",
+    "sinon-chai": "^3.1.0"
   },
   "keywords": [
     "stackoverflow",
