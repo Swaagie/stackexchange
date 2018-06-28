@@ -186,7 +186,7 @@ describe('Tags', function () {
   it('get tags wiki', function(done) {
     context.tags.wiki(filter, function(err, results) {
       if (err) throw err;
-      console.log('results: ', results);
+      // console.log('results: ', results);
 
       expect(results.items).to.have.length(1);
       expect(results.items[0]).to.have.property('excerpt_last_edit_date');
