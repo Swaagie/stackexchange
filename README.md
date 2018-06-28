@@ -35,4 +35,12 @@ context.questions.questions(filter, function(err, results){
   console.log(results.has_more);
 });
 
+// Get all users
+context.users.users(filter, function(err, results){
+  if (err) throw err;
+
+  console.log(results.items);
+  console.log(results.has_more);
+});
+
 ```
