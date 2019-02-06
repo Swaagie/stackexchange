@@ -12,8 +12,7 @@
   },
   "dependencies": {
     "nconf": "0.8.x",
-    "request": "^2.87.0",
-    "utile": "0.3.x"
+    "request": "^2.87.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
