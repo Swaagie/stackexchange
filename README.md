@@ -43,4 +43,14 @@ context.users.users(filter, function(err, results){
   console.log(results.has_more);
 });
 
+// Get results for a different website within the stackexchange network
+filter.site = 'softwareengineering' // this value should be one that is acceptable by the stack exchange API.
+                                    // more details on this can be found on https://api.stackexchange.com/docs
+context.questions.questions(filter, function(err, results){
+  if (err) throw err;
+  
+  console.log(results.items);
+  console.log(results.has_more);
+});
+// the above operation can be done by adding a 'site' key value pair within the options object initialised earlier.
 ```
