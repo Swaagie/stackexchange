@@ -1,3 +1,7 @@
+# 1.2.0
+
+Allow `site` property to be specified in `filter`. (Thanks @karanaggarwal1!)
+
 # 1.1.0
 
 * Add `users.users()`.
