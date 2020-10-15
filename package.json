@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:Moveo/stackexchange.git"
+    "url": "git@github.com:Swaagie/stackexchange.git"
   },
   "dependencies": {
     "nconf": "0.8.x",
