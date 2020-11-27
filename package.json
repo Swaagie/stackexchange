@@ -4,7 +4,7 @@
   "description": "Node.js implementation of the stackexchange/stackoverflow API",
   "main": "./lib/stackexchange",
   "scripts": {
-    "test": "NODE_ENV=test ./node_modules/.bin/mocha $(find test -name '*.test.js')"
+    "test": "NODE_ENV=test c8 ./node_modules/.bin/mocha $(find test -name '*.test.js')"
   },
   "repository": {
     "type": "git",
@@ -16,6 +16,7 @@
     "request": "^2.87.0"
   },
   "devDependencies": {
+    "c8": "^7.3.5",
     "chai": "^4.1.2",
     "mocha": "^8.2.0",
     "sinon": "^4.5.0",
