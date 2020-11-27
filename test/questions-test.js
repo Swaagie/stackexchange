@@ -1,5 +1,6 @@
 /*tags expect*/
 
+const { expect } = require('chai');
 var stackexchange = require('../lib/stackexchange');
 
 describe('Questions', function () {
@@ -36,5 +37,19 @@ describe('Questions', function () {
       expect(results.items.every((val) => val.link.startsWith('https://softwareengineering.stackexchange.com/questions/'))).to.be.true;
       done();
     });    
+  })
+
+  it('upvote a question should throw an error without key or access_token', function(done) {
+    let count = 0;
+    const cases = [{}, {key: 'fhqwhgads'}, {access_token: 'fhqwhgads'}];
+    cases.forEach((filter) => {
+      context.questions.upvote(filter, '51812', (err) => {
+        expect(err.message).to.equal('questions.upvote lacks key and/or access token as criteria');
+        count++;
+        if (count >= cases.length) {
+          done();
+        }
+      });
+    });
   })
 });
