@@ -18,6 +18,11 @@ describe('Questions', function () {
     };
   });
 
+  it('throws if no callback', function(done) {
+    expect(() => { context.questions.questions(filter); }).to.throw();
+    done();
+  })
+
   it('get questions', function(done) {
     context.questions.questions(filter, function(err, results){
       if (err) throw err;
