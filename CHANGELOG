@@ -1,3 +1,7 @@
+# 1.2.1
+
+Correct error message for questions.downvote() that indicated upvote() instead.
+
 # 1.2.0
 
 Allow `site` property to be specified in `filter`. (Thanks @karanaggarwal1!)
