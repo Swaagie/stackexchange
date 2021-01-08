@@ -1,5 +1,6 @@
 /*tags expect*/
 
+const { expect } = require('chai');
 var stackexchange = require('../lib/stackexchange');
 
 describe('Tags', function () {
@@ -196,6 +197,15 @@ describe('Tags', function () {
       expect(results.has_more).to.be.false;
       done();
     }, ['javascript']);
+  });
+
+  it('get tags wiki errors if no tag provided', function(done) {
+    context.tags.wiki(filter, function(err, results) {
+      expect(err).to.be.instanceof(Error);
+      expect(err.message).to.equal('tags is required');
+      expect(results).to.be.undefined;
+      done();
+    }, []);
   });
 
 });
