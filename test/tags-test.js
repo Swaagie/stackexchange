@@ -43,6 +43,15 @@ describe('Tags', function () {
       done();
     });
   });
+
+  it('get tags requires sort option', function(done) {
+    delete filter.sort;
+    context.tags.tags(filter, function(err, results){
+      expect(err).to.be.instanceof(Error);
+      done();
+    });
+  });
+  
   it('get tags illegal sort option', function(done) {
     filter.sort = 'creation';
     context.tags.tags(filter, function(err, results){
@@ -105,6 +114,15 @@ describe('Tags', function () {
       done();
     });
   });
+
+  it('get tags synonyms requires sort option', function(done) {
+    delete filter.sort;
+    context.tags.synonyms(filter, function(err, results){
+      expect(err).to.be.instanceof(Error);
+      done();
+    });
+  });
+
   it('get tags synonyms illegal sort option', function(done) {
     context.tags.synonyms(filter, function(err, results){
       expect(err).to.be.instanceof(Error);
@@ -157,6 +175,17 @@ describe('Tags', function () {
       expect(results.has_more).to.be.true;
       done();
     }, ['javascript'], 'all_time');
+  });
+
+  it('get tags topAnswerers omitting period', function(done) {
+    context.tags.topAnswerers(filter, function(err, results) {
+      if (err) throw err;
+      // console.log('results: ', results);
+
+      expect(results.items).to.have.length(10);
+      expect(results.has_more).to.be.true;
+      done();
+    }, ['javascript']);
   });
 
   it('get tags topAnswerers illegal period', function(done) {
