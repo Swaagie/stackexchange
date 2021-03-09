@@ -1,5 +1,6 @@
 const { expect } = require('chai');
 var stackexchange = require('../lib/stackexchange');
+const nock = require('nock');
 
 describe('Search', function () {
   'use strict';
@@ -47,4 +48,17 @@ describe('Search', function () {
       done();
     });
   });
+
+  it('reports invalid JSON via error object of callback', function(done) {
+    const nockScope = nock('https://api.stackexchange.com', { allowUnmocked: true });
+    nockScope.get('/2.2/search?pagesize=10&order=desc&sort=activity&q=fhqwhgads&site=stackoverflow')
+      .reply(200, 'fhqwhgads');
+    filter.q = 'fhqwhgads';
+    context.search.search(filter, function(err, results) {
+      expect(results).to.be.undefined;
+      expect(err.message).to.be.equal('invalid json response body at https://api.stackexchange.com/2.2/search?pagesize=10&order=desc&sort=activity&q=fhqwhgads&site=stackoverflow reason: Unexpected token h in JSON at position 1');
+      done();
+    })
+  });
+
 });
