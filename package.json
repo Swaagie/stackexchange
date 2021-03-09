@@ -1,6 +1,6 @@
 {
   "name": "stackexchange",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Node.js implementation of the stackexchange/stackoverflow API",
   "main": "./lib/stackexchange",
   "files": [
