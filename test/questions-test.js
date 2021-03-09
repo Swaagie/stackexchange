@@ -103,6 +103,13 @@ describe('Questions', function () {
     check('downvote');
   });
 
+  it('upvote/downvote should throw an error if no callback supplied', function () {
+    const filter = {key: 'fhqwhgads', access_token: 'fhqwhgads'};
+
+    expect(() => { context.questions.upvote(filter, '51812'); }).to.throw();
+    expect(() => { context.questions.downvote(filter, '51812'); }).to.throw();
+  })
+
 
   {
     const nockScope = nock('https://api.stackexchange.com', { allowUnmocked: true });
@@ -172,7 +179,20 @@ describe('Questions', function () {
           expect(err.message).to.equal('Unexpected token h in JSON at position 1');
           done();
         });
-      })
+      });
+
+      it('reports error from request', function(done) {
+        nockScope.post('/2.2/questions/1/upvote', filter)
+          .replyWithError({message: 'come on', code: 'ETIMEDOUT'});
+
+        context.questions.upvote(filter, '1', (err, question) => {
+          expect(question).to.be.undefined;
+          expect(err.message).to.equal('come on');
+          expect(err.code).to.be.equal('ETIMEDOUT');
+          done();
+        });
+      });
     }
   }
 });
+
