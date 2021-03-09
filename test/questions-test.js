@@ -151,6 +151,17 @@ describe('Questions', function () {
           done();
         }, true);
       });
+
+      it('uses error argument in callback for invalid zip', function(done) {
+        nockScope.post('/2.2/questions/101010/upvote', filter)
+          .reply(200, 'fhqwhgads');
+
+        context.questions.upvote(filter, '101010', (err, question) => {
+          expect(question).to.be.undefined;
+          expect(err.message).to.equal('incorrect header check');
+          done();
+        });
+      });
     }
   }
 });
