@@ -55,7 +55,7 @@ describe('Answers', function () {
 
       expect(results.items).to.have.length(10);
       expect(results.has_more).to.be.true;
-      expect(results.items.every((val) => val.link.startsWith('https://stackoverflow.com/users/'))).to.be.true;
+      expect(results.items.every((val) => val.owner.link.startsWith('https://stackoverflow.com/users/'))).to.be.true;
       done();
     });
   });
