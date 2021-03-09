@@ -1,3 +1,7 @@
+# 1.2.3
+
+Fix edge case where callback might get invoked twice.
+
 # 1.2.2
 
 Do not publish tests as part of package.
