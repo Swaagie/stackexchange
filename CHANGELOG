@@ -1,3 +1,7 @@
+# 1.2.4
+
+Correct error message for answers.downvote() that indicated upvote() instead.
+
 # 1.2.3
 
 Fix edge case where callback might get invoked twice.
