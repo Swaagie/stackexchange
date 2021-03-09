@@ -55,95 +55,92 @@ describe('Answers', function () {
 
       expect(results.items).to.have.length(10);
       expect(results.has_more).to.be.true;
-      expect(results.items.every((val) => val.owner.link.startsWith('https://stackoverflow.com/users/'))).to.be.true;
       done();
     });
   });
 
-  // it('gets specified answers', function(done) {
-  //   context.answers.answers(filter, function(err, results) {
-  //     if (err) throw err;
+  it('gets specified answers', function(done) {
+    context.answers.answers(filter, function(err, results) {
+      if (err) throw err;
 
-  //     expect(results.items).to.have.length(10);
-  //     expect(results.has_more).to.be.true;
-  //     expect(results.items.every((val) => val.link.startsWith('https://stackoverflow.com/users/'))).to.be.true;
-  //     done();
-  //   }, [42]);
-  // });
+      expect(results.items).to.have.length(1);
+      expect(results.has_more).to.be.false;
+      done();
+    }, [66539406]);
+  });
 
-  // it('use a different site via filter', function(done) {
-  //   filter.site = 'softwareengineering';
-  //   context.answers.answers(filter, function(err, results){
-  //     if (err) throw err;
-  //     expect(results.items).to.have.length(10);
-  //     expect(results.has_more).to.be.true;
-  //     expect(results.items.every((val) => val.link.startsWith('https://softwareengineering.stackexchange.com/users/'))).to.be.true;
-  //     done();
-  //   });    
-  // });
+  it('use a different site via filter', function(done) {
+    filter.site = 'softwareengineering';
+    context.answers.answers(filter, function(err, results){
+      if (err) throw err;
+      expect(results.items).to.have.length(10);
+      expect(results.has_more).to.be.true;
+      done();
+    });    
+  });
 
-//   it('upvote/downvote should throw an error without key or access_token', function() {
-//     function check(fn) {
-//       const cases = [{}, {key: 'fhqwhgads'}, {access_token: 'fhqwhgads'}];
-//       cases.forEach((filter) => {
-//         context.answers[fn](filter, '51812', (err) => {
-//           expect(err.message).to.equal(`answers.${fn} lacks key and/or access token as criteria`);
-//         });
-//       });
-//     }
+  it('upvote/downvote should throw an error without key or access_token', function() {
+    function check(fn) {
+      const cases = [{}, {key: 'fhqwhgads'}, {access_token: 'fhqwhgads'}];
+      cases.forEach((filter) => {
+        context.answers[fn](filter, '51812', (err) => {
+          expect(err.message).to.equal(`answers.${fn} lacks key and/or access token as criteria`);
+        });
+      });
+    }
 
-//     check('upvote');
-//     check('downvote');
-//   });
+    check('upvote');
+    check('downvote');
+  });
 
 
-//   {
-//     const nockScope = nock('https://api.stackexchange.com', { allowUnmocked: true });
-//     const filter = {key: 'fhqwhgads', access_token: 'fhqwhgads'};
-//     {
-//       it('upvote should post to expected endpoints', function(done) {
-//         nockScope.post('/2.2/answers/42/upvote', filter)
-//           .reply(200, zlib.deflateSync(Buffer.from(JSON.stringify(answerFixture))));
+  {
+    const nockScope = nock('https://api.stackexchange.com', { allowUnmocked: true });
+    const filter = {key: 'fhqwhgads', access_token: 'fhqwhgads'};
+    {
+      it('upvote should post to expected endpoints', function(done) {
+        nockScope.post('/2.2/answers/42/upvote', filter)
+          .reply(200, zlib.deflateSync(Buffer.from(JSON.stringify(answerFixture))));
         
-//         context.answers.upvote(filter, '42', (err, question) => {
-//           expect(err).to.be.undefined;
-//           expect(question).to.deep.equal(answerFixture);
-//           done();
-//         });
-//       });
+        context.answers.upvote(filter, '42', (err, question) => {
+          expect(err).to.be.undefined;
+          expect(question).to.deep.equal(answerFixture);
+          done();
+        });
+      });
 
-//       it('downvote should post to expected endpoints', function(done) {
-//         nockScope.post('/2.2/answers/42/downvote', filter)
-//           .reply(200, zlib.deflateSync(Buffer.from(JSON.stringify(answerFixture))));
+      it('downvote should post to expected endpoints', function(done) {
+        nockScope.post('/2.2/answers/42/downvote', filter)
+          .reply(200, zlib.deflateSync(Buffer.from(JSON.stringify(answerFixture))));
         
-//         context.answers.downvote(filter, '42', (err, question) => {
-//           expect(err).to.be.undefined;
-//           expect(question).to.deep.equal(answerFixture);
-//           done();
-//         });
-//       });
+        context.answers.downvote(filter, '42', (err, question) => {
+          expect(err).to.be.undefined;
+          expect(question).to.deep.equal(answerFixture);
+          done();
+        });
+      });
 
-//       it('upvote with undo should post to expected endpoints', function(done) {
-//         nockScope.post('/2.2/answers/42/upvote/undo', filter)
-//           .reply(200, zlib.deflateSync(Buffer.from(JSON.stringify(answerFixture))));
+      it('upvote with undo should post to expected endpoints', function(done) {
+        nockScope.post('/2.2/answers/42/upvote/undo', filter)
+          .reply(200, zlib.deflateSync(Buffer.from(JSON.stringify(answerFixture))));
         
-//         context.answers.upvote(filter, '42', (err, question) => {
-//           expect(err).to.be.undefined;
-//           expect(question).to.deep.equal(answerFixture);
-//           done();
-//         }, true);
-//       });
+        context.answers.upvote(filter, '42', (err, question) => {
+          expect(err).to.be.undefined;
+          expect(question).to.deep.equal(answerFixture);
+          done();
+        }, true);
+      });
 
-//       it('downvote with undo should post to expected endpoints', function(done) {
-//         nockScope.post('/2.2/answers/42/downvote/undo', filter)
-//           .reply(200, zlib.deflateSync(Buffer.from(JSON.stringify(answerFixture))));
+      it('downvote with undo should post to expected endpoints', function(done) {
+        nockScope.post('/2.2/answers/42/downvote/undo', filter)
+          .reply(200, zlib.deflateSync(Buffer.from(JSON.stringify(answerFixture))));
         
-//         context.answers.downvote(filter, '42', (err, question) => {
-//           expect(err).to.be.undefined;
-//           expect(question).to.deep.equal(answerFixture);
-//           done();
-//         }, true);
-//       });
-//     }
-//   }
+        context.answers.downvote(filter, '42', (err, question) => {
+          expect(err).to.be.undefined;
+          expect(question).to.deep.equal(answerFixture);
+          done();
+        }, true);
+      });
+    }
+  }
 });
