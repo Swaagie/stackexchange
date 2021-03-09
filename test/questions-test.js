@@ -162,6 +162,17 @@ describe('Questions', function () {
           done();
         });
       });
+
+      it('uses error argument in callback for invalid JSON', function(done) {
+        nockScope.post('/2.2/questions/101010/downvote', filter)
+          .reply(200, zlib.deflateSync(Buffer.from('fhqwhgads')));
+
+        context.questions.downvote(filter, '101010', (err, question) => {
+          expect(question).to.be.undefined;
+          expect(err.message).to.equal('Unexpected token h in JSON at position 1');
+          done();
+        });
+      })
     }
   }
 });
