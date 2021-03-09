@@ -2,6 +2,8 @@ const { expect } = require('chai');
 var stackexchange = require('../lib/stackexchange');
 const nock = require('nock');
 
+const nockScope = nock('https://api.stackexchange.com', { allowUnmocked: true });
+
 describe('Search', function () {
   'use strict';
 
@@ -50,15 +52,27 @@ describe('Search', function () {
   });
 
   it('reports invalid JSON via error object of callback', function(done) {
-    const nockScope = nock('https://api.stackexchange.com', { allowUnmocked: true });
     nockScope.get('/2.2/search?pagesize=10&order=desc&sort=activity&q=fhqwhgads&site=stackoverflow')
       .reply(200, 'fhqwhgads');
-    filter.q = 'fhqwhgads';
+
+      filter.q = 'fhqwhgads';
     context.search.search(filter, function(err, results) {
       expect(results).to.be.undefined;
       expect(err.message).to.be.equal('invalid json response body at https://api.stackexchange.com/2.2/search?pagesize=10&order=desc&sort=activity&q=fhqwhgads&site=stackoverflow reason: Unexpected token h in JSON at position 1');
       done();
-    })
+    });
   });
 
+  it('reports error from request', function(done) {
+    nockScope.get('/2.2/search?pagesize=10&order=desc&sort=activity&q=42&site=stackoverflow')
+      .replyWithError({message: 'come on', code: 'ETIMEDOUT'});
+
+    filter.q = '42';
+    context.search.search(filter, function(err, results) {
+      expect(results).to.be.undefined;
+      expect(err.message).to.include('come on');
+      expect(err.code).to.be.equal('ETIMEDOUT');
+      done();
+    });
+  });
 });
