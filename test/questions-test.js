@@ -1,7 +1,40 @@
 /*tags expect*/
 
 const { expect } = require('chai');
+const nock = require('nock');
 var stackexchange = require('../lib/stackexchange');
+const zlib = require('zlib');
+
+const questionFixture = {
+  "tags": [
+    "windows",
+    "c#",
+    ".net"
+  ],
+  "owner": {
+    "reputation": 9001,
+    "user_id": 1,
+    "user_type": "registered",
+    "accept_rate": 55,
+    "profile_image": "https://www.gravatar.com/avatar/a007be5a61f6aa8f3e85ae2fc18dd66e?d=identicon&r=PG",
+    "display_name": "Example User",
+    "link": "https://example.stackexchange.com/users/1/example-user"
+  },
+  "is_answered": false,
+  "view_count": 31415,
+  "favorite_count": 1,
+  "down_vote_count": 2,
+  "up_vote_count": 3,
+  "answer_count": 0,
+  "score": 1,
+  "last_activity_date": 1615207909,
+  "creation_date": 1615164709,
+  "last_edit_date": 1615233109,
+  "question_id": 1234,
+  "link": "https://example.stackexchange.com/questions/1234/an-example-post-title",
+  "title": "An example post title",
+  "body": "An example post body"
+};
 
 describe('Questions', function () {
   'use strict';
@@ -69,4 +102,55 @@ describe('Questions', function () {
     check('upvote');
     check('downvote');
   });
+
+
+  {
+    const nockScope = nock('https://api.stackexchange.com', { allowUnmocked: true });
+    const filter = {key: 'fhqwhgads', access_token: 'fhqwhgads'};
+    {
+      it('upvote should post to expected endpoints', function(done) {
+        nockScope.post('/2.2/questions/42/upvote', filter)
+          .reply(200, zlib.deflateSync(Buffer.from(JSON.stringify(questionFixture))));
+        
+        context.questions.upvote(filter, '42', (err, question) => {
+          expect(err).to.be.undefined;
+          expect(question).to.deep.equal(questionFixture);
+          done();
+        });
+      });
+
+      it('downvote should post to expected endpoints', function(done) {
+        nockScope.post('/2.2/questions/42/downvote', filter)
+          .reply(200, zlib.deflateSync(Buffer.from(JSON.stringify(questionFixture))));
+        
+        context.questions.downvote(filter, '42', (err, question) => {
+          expect(err).to.be.undefined;
+          expect(question).to.deep.equal(questionFixture);
+          done();
+        });
+      });
+
+      it('upvote with undo should post to expected endpoints', function(done) {
+        nockScope.post('/2.2/questions/42/upvote/undo', filter)
+          .reply(200, zlib.deflateSync(Buffer.from(JSON.stringify(questionFixture))));
+        
+        context.questions.upvote(filter, '42', (err, question) => {
+          expect(err).to.be.undefined;
+          expect(question).to.deep.equal(questionFixture);
+          done();
+        }, true);
+      });
+
+      it('downvote with undo should post to expected endpoints', function(done) {
+        nockScope.post('/2.2/questions/42/downvote/undo', filter)
+          .reply(200, zlib.deflateSync(Buffer.from(JSON.stringify(questionFixture))));
+        
+        context.questions.downvote(filter, '42', (err, question) => {
+          expect(err).to.be.undefined;
+          expect(question).to.deep.equal(questionFixture);
+          done();
+        }, true);
+      });
+    }
+  }
 });
