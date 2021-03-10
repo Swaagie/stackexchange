@@ -52,11 +52,11 @@ describe('Answers', function () {
   });
 
   it('gets all answers', function(done) {
+    nockScope.get('/2.2/answers/?pagesize=10&sort=activity&order=asc&site=stackexchange')
+      .reply(200, {})
+
     context.answers.answers(filter, function(err, results) {
       if (err) throw err;
-
-      expect(results.items).to.have.length(10);
-      expect(results.has_more).to.be.true;
       done();
     });
   });
