@@ -187,7 +187,7 @@ describe('Questions', function () {
 
         context.questions.upvote(filter, '1', (err, question) => {
           expect(question).to.be.undefined;
-          expect(err.message).to.equal('come on');
+          expect(err.message).to.include('come on');
           expect(err.code).to.be.equal('ETIMEDOUT');
           done();
         });

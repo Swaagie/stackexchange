@@ -15,8 +15,7 @@
   },
   "dependencies": {
     "nconf": "0.8.x",
-    "node-fetch": "^2.6.1",
-    "request": "^2.87.0"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "c8": "^7.3.5",
