@@ -7,7 +7,7 @@
     "lib"
   ],
   "scripts": {
-    "test": "NODE_ENV=test c8 ./node_modules/.bin/mocha $(find test -name '*.test.js')"
+    "test": "standard lib && NODE_ENV=test c8 ./node_modules/.bin/mocha $(find test -name '*.test.js')"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,8 @@
     "c8": "^7.3.5",
     "chai": "^4.1.2",
     "mocha": "^8.2.0",
-    "nock": "^13.0.11"
+    "nock": "^13.0.11",
+    "standard": "^16.0.3"
   },
   "keywords": [
     "stackoverflow",
