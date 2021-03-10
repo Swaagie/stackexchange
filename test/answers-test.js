@@ -52,7 +52,7 @@ describe('Answers', function () {
   });
 
   it('gets all answers', function(done) {
-    nockScope.get('/2.2/answers/?pagesize=10&sort=activity&order=asc&site=stackexchange')
+    nockScope.get('/2.2/answers/?pagesize=10&sort=activity&order=asc&site=stackoverflow')
       .reply(200, {})
 
     context.answers.answers(filter, function(err, results) {
