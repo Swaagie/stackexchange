@@ -1,3 +1,7 @@
+# 1.2.5
+
+Remove deprecated request dependency. No more warnings on install!
+
 # 1.2.4
 
 Correct error message for answers.downvote() that indicated upvote() instead.
