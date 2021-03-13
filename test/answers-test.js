@@ -49,6 +49,7 @@ describe('Answers', function () {
 
   it('throws if no callback', function() {
     expect(() => { context.answers.answers(filter); }).to.throw();
+    expect(() => { context.answers.comments(filter); }).to.throw();
   });
 
   it('gets all answers', function(done) {
@@ -71,6 +72,21 @@ describe('Answers', function () {
     }, [66539406]);
   });
 
+  it('get comments', function(done) {
+    filter.sort = undefined;
+    const answerIds = [11227902, 11227877, 11237235, 12853037, 14889969]
+    const callback = (err, results) => {
+      if (err) throw err;
+
+      expect(results.items).to.have.length(10);
+      expect(results.has_more).to.be.true;
+      expect(results.items.every((val) => val.hasOwnProperty('comment_id'))).to.be.true;
+
+      done();
+    }
+    context.answers.comments(filter, callback, answerIds);
+  });
+
   it('use a different site via filter', function(done) {
     nockScope.get('/2.2/answers/?pagesize=10&sort=activity&order=asc&site=softwareengineering')
       .reply(200, {})
@@ -78,7 +94,7 @@ describe('Answers', function () {
     context.answers.answers(filter, function(err, results){
       if (err) throw err;
       done();
-    });    
+    });
   });
 
   it('upvote/downvote should throw an error without key or access_token', function() {
@@ -102,7 +118,7 @@ describe('Answers', function () {
       it('upvote should post to expected endpoints', function(done) {
         nockScope.post('/2.2/answers/42/upvote', filter)
           .reply(200, zlib.deflateSync(Buffer.from(JSON.stringify(answerFixture))));
-        
+
         context.answers.upvote(filter, '42', (err, question) => {
           expect(err).to.be.undefined;
           expect(question).to.deep.equal(answerFixture);
@@ -113,7 +129,7 @@ describe('Answers', function () {
       it('downvote should post to expected endpoints', function(done) {
         nockScope.post('/2.2/answers/42/downvote', filter)
           .reply(200, zlib.deflateSync(Buffer.from(JSON.stringify(answerFixture))));
-        
+
         context.answers.downvote(filter, '42', (err, question) => {
           expect(err).to.be.undefined;
           expect(question).to.deep.equal(answerFixture);
@@ -124,7 +140,7 @@ describe('Answers', function () {
       it('upvote with undo should post to expected endpoints', function(done) {
         nockScope.post('/2.2/answers/42/upvote/undo', filter)
           .reply(200, zlib.deflateSync(Buffer.from(JSON.stringify(answerFixture))));
-        
+
         context.answers.upvote(filter, '42', (err, question) => {
           expect(err).to.be.undefined;
           expect(question).to.deep.equal(answerFixture);
@@ -135,7 +151,7 @@ describe('Answers', function () {
       it('downvote with undo should post to expected endpoints', function(done) {
         nockScope.post('/2.2/answers/42/downvote/undo', filter)
           .reply(200, zlib.deflateSync(Buffer.from(JSON.stringify(answerFixture))));
-        
+
         context.answers.downvote(filter, '42', (err, question) => {
           expect(err).to.be.undefined;
           expect(question).to.deep.equal(answerFixture);
