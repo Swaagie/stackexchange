@@ -1,6 +1,7 @@
 coverage/
 node_modules/
 .idea
+.vscode
 lib-cov
 *.seed
 *.log
