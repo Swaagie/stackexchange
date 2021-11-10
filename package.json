@@ -14,7 +14,6 @@
     "url": "git@github.com:Swaagie/stackexchange.git"
   },
   "dependencies": {
-    "nconf": "0.8.x",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
