@@ -1,4 +1,4 @@
-global.chai = require('chai');
-global.expect = global.chai.expect;
+global.chai = require('chai')
+global.expect = global.chai.expect
 
-global.chai.config.includeStack = true;
+global.chai.config.includeStack = true
