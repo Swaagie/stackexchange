@@ -58,7 +58,6 @@ describe('Search', function () {
     filter.q = 'fhqwhgads'
     context.search.search(filter, function (err, results) {
       expect(results).to.be.undefined
-      console.log(err.message);
       expect(err.message).to.include('Unexpected token h in JSON at position 1')
       done()
     })
