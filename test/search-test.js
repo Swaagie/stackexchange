@@ -58,7 +58,8 @@ describe('Search', function () {
     filter.q = 'fhqwhgads'
     context.search.search(filter, function (err, results) {
       expect(results).to.be.undefined
-      expect(err.message).to.be.equal('invalid json response body at https://api.stackexchange.com/2.2/search?pagesize=10&order=desc&sort=activity&q=fhqwhgads&site=stackoverflow reason: Unexpected token h in JSON at position 1')
+      console.log(err.message);
+      expect(err.message).to.include('Unexpected token h in JSON at position 1')
       done()
     })
   })

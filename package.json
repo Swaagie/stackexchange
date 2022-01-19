@@ -14,7 +14,7 @@
     "url": "git@github.com:Swaagie/stackexchange.git"
   },
   "dependencies": {
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^3.1.1"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.1",
