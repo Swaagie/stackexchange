@@ -6,6 +6,9 @@ on:
 jobs:
   release:
     name: Release
+    permissions:
+      id-token: write
+      contents: write
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
@@ -22,5 +25,4 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
