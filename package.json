@@ -23,7 +23,7 @@
     "chai": "^4.3.4",
     "mocha": "^9.1.4",
     "nock": "^13.2.2",
-    "semantic-release": "^19.0.2",
+    "semantic-release": "^25.0.3",
     "standard": "^16.0.4"
   },
   "keywords": [
