@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/Swaagie/stackexchange/compare/v3.0.0...v4.0.0) (2026-03-16)
+
+
+### chore
+
+* update dependencies ([d90091a](https://github.com/Swaagie/stackexchange/commit/d90091ac1c37033de67e269ec3423c115fb2599b))
+
+
+### BREAKING CHANGES
+
+* Support for Node.js 22.x and later only
+
 # [3.0.0](https://github.com/Swaagie/stackexchange/compare/v2.0.0...v3.0.0) (2026-03-16)
 
 
