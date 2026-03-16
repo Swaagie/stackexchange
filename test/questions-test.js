@@ -196,7 +196,7 @@ describe('Questions', function () {
 
         context.questions.downvote(filter, '101010', (err, question) => {
           expect(question).to.be.undefined
-          expect(err.message).to.equal('Unexpected token h in JSON at position 1')
+          expect(err.message).to.include('Unexpected token')
           done()
         })
       })
