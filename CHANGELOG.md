@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/Swaagie/stackexchange/compare/v2.0.0...v3.0.0) (2026-03-16)
+
+
+### chore
+
+* update support matrix ([1b78a2b](https://github.com/Swaagie/stackexchange/commit/1b78a2b2b9450d4cde0f8448c5734b9357959e74))
+
+
+### BREAKING CHANGES
+
+* Support for Node.js 16.x and later only
+
 # [2.0.0](https://github.com/Swaagie/stackexchange/compare/v1.3.1...v2.0.0) (2022-01-19)
 
 
